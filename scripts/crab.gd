@@ -14,10 +14,10 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		is_player_near = true
 
-func _on_body_exited(body: Node2D) -> void:
-	if body.name == "Player":
-		is_player_near = false
-		speech_bubble.hide() 
+#func _on_body_exited(body: Node2D) -> void:
+	#if body.name == "Player":
+		#is_player_near = false
+		#speech_bubble.hide() 
 
 func _input(event: InputEvent) -> void:
 	if is_player_near and event.is_action_pressed("interact") and not speech_bubble.visible:

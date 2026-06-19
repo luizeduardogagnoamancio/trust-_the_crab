@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://celpocppa0gus"]
+
+[ext_resource type="Script" uid="uid://b1o0um6vsyic2" path="res://scripts/game_over_ui.gd" id="1_y6ord"]
+[ext_resource type="FontFile" uid="uid://bopedmen1k1av" path="res://assets/fonts/PixelOperator8.ttf" id="2_lk38d"]
+
+[node name="GameOverUI" type="CanvasLayer" unique_id=264040013]
+process_mode = 3
+script = ExtResource("1_y6ord")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=115722149]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1603713621]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=2003800848]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lk38d")
+theme_override_font_sizes/font_size = 100
+text = "You died!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1166740160]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lk38d")
+theme_override_font_sizes/font_size = 50
+text = "Try Again"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

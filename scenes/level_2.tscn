@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://1ne3fqx8o5nj"]
+
+[ext_resource type="PackedScene" uid="uid://c72t0ynielqdn" path="res://scenes/crab.tscn" id="1_3bmlt"]
+
+[node name="Level 2" type="Node2D" unique_id=821338211]
+
+[node name="Crab" parent="." unique_id=1068649154 instance=ExtResource("1_3bmlt")]
+position = Vector2(-60, -63)
+
+[node name="Crab2" parent="." unique_id=1526769691 instance=ExtResource("1_3bmlt")]
+position = Vector2(73, -66)

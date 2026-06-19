@@ -48,9 +48,12 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_83q5x"]
 font = ExtResource("4_83q5x")
-font_size = 8
+font_size = 6
 font_color = Color(0, 0, 0, 1)
 outline_size = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83q5x"]
+size = Vector2(18, 9)
 
 [node name="Crab" type="Area2D" unique_id=1068649154]
 script = ExtResource("1_2b8bq")
@@ -93,6 +96,12 @@ label_settings = SubResource("LabelSettings_83q5x")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1095167473]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1532663185]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_83q5x")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

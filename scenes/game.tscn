@@ -2,13 +2,34 @@
 
 [ext_resource type="PackedScene" uid="uid://cufscnu47ml1o" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://c72t0ynielqdn" path="res://scenes/crab.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://cc4aypvi2iuws" path="res://scenes/level_exit.tscn" id="3_p57ef"]
+[ext_resource type="PackedScene" uid="uid://1ne3fqx8o5nj" path="res://scenes/level_2.tscn" id="4_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://dytfyeyvsg0n4" path="res://icon.svg" id="5_gee14"]
+[ext_resource type="PackedScene" uid="uid://yhan1t2e87t5" path="res://scenes/death_zone.tscn" id="6_0tnpc"]
 
 [node name="Game" type="Node2D" unique_id=1689225574]
 
 [node name="Player" parent="." unique_id=1129859551 instance=ExtResource("1_uwrxv")]
+position = Vector2(24, 0)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=238910291]
 zoom = Vector2(4, 4)
 
 [node name="Crab" parent="." unique_id=1068649154 instance=ExtResource("2_yqjtg")]
-position = Vector2(53, -33)
+position = Vector2(24, -33)
+
+[node name="LevelExit" parent="." unique_id=1253702236 instance=ExtResource("3_p57ef")]
+position = Vector2(-22, -9)
+next_level = ExtResource("4_u5sy4")
+
+[node name="Icon" type="Sprite2D" parent="LevelExit" unique_id=65981201]
+scale = Vector2(0.15625, 0.125)
+texture = ExtResource("5_gee14")
+
+[node name="DeathZone" parent="." unique_id=1656595100 instance=ExtResource("6_0tnpc")]
+position = Vector2(75, -9)
+
+[node name="Icon2" type="Sprite2D" parent="DeathZone" unique_id=9143769]
+modulate = Color(0.6076254, 1, 0.5572467, 1)
+scale = Vector2(0.12499999, 0.12499999)
+texture = ExtResource("5_gee14")

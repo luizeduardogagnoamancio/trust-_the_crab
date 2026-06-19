@@ -7,6 +7,8 @@ const BASE_WALK_ANIM_LENGTH: float = 0.4
 @export var turn_delay: float = 0.1
 
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+# Pegamos a referência da nossa antena/laser
+@onready var ray_cast: RayCast2D = $RayCast2D
 
 var is_moving: bool = false
 var facing_direction: Vector2 = Vector2.DOWN
@@ -19,23 +21,29 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if is_moving:
 		return
-	
+
 	var direction: Vector2 = Input.get_vector("left", "right", "up", "down")
 	
 	if direction.x != 0:
 		direction.y = 0
 	direction = direction.sign()
-	
+
 	if direction != Vector2.ZERO:
 		if direction != facing_direction:
 			facing_direction = direction
 			turn_timer = turn_delay
 			anim_player.play("idle_" + get_direction_name(facing_direction))
+			
+			# Atualiza a direção do RayCast quando o player apenas vira de lado
+			update_raycast_direction(direction)
 		else:
 			if turn_timer > 0:
 				turn_timer -= delta
 			else:
-				move_to_grid(direction)
+				# Antes de andar, atualizamos o RayCast e checamos a colisão
+				update_raycast_direction(direction)
+				if not ray_cast.is_colliding():
+					move_to_grid(direction)
 	else:
 		turn_timer = 0.0
 
@@ -55,6 +63,12 @@ func move_to_grid(direction: Vector2) -> void:
 		is_moving = false
 		anim_player.play("idle_" + get_direction_name(direction))
 	)
+
+# Função nova para girar o sensor laser para a direção correta
+func update_raycast_direction(direction: Vector2) -> void:
+	ray_cast.target_position = direction * tile_size
+	# Força o RayCast a atualizar a matemática dele imediatamente neste frame
+	ray_cast.force_raycast_update()
 
 func get_direction_name(dir: Vector2) -> String:
 	match dir:
